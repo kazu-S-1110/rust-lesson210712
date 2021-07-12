@@ -44,4 +44,17 @@ pub fn run() {
     println!("The value of z is : {}", z);
   }
   println!("The value of z is : {}", z); //ただし、子スコープで書いた処理はスコープを抜けると元に戻るので注意。ここでは0ではなく12が出力される。
+
+  //タプル型
+  let t1 = (500, 6.4, "dummy"); //丸括弧で閉じるとタプル型になる
+
+  //タプルの取り出し方2つ
+  let (_x, _y, _z) = t1;
+  println!("The value of t1 is : {} {} {}", t1.0, t1.1, t1.2);
+
+  let mut t2 = ((0, 1), (2, 3));
+  let ((ref mut x1_ptr, ref mut y1_ptr), _) = t2; //入れ子のタプルにアクセスする方法refを使う。
+  *x1_ptr = 5; //参照を外す方法。先頭に*(アスタリスク)を付ける。
+  *y1_ptr = -4;
+  println!("{:?}", t2); //出力結果→　((5, -4), (2, 3))
 }
