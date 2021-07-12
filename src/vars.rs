@@ -30,4 +30,18 @@ pub fn run() {
   let i3: i64 = 2;
   println!("Stack address of i2 is :{:p}", &i2);
   println!("Stack address of i3 is :{:p}", &i3); //メモリアドレスが定数と違うところにあることを確認。
+
+  let z = 5;
+  println!("Stack address of z is : {:p}", &z);
+  let z = z + 1;
+  println!("Stack address of z is : {:p}", &z);
+  let z = z * 2;
+  println!("Stack address of z is : {:p}", &z); //同じ変数であっても新しいメモリアドレスを使う。
+  println!("The value of z is : {}", z);
+  {
+    println!("The value of z is : {}", z); //子のスコープには変数を引き継ぐ。変えることも可能。
+    let z = 0;
+    println!("The value of z is : {}", z);
+  }
+  println!("The value of z is : {}", z); //ただし、子スコープで書いた処理はスコープを抜けると元に戻るので注意。ここでは0ではなく12が出力される。
 }
